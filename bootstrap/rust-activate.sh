@@ -29,6 +29,11 @@ fi
 
 if [[ $(uname) == Darwin ]]; then
   export CONDA_BUILD_SYSROOT=/opt/MacOSX10.9.sdk
+  echo "You may want to add this to /etc/launchd.conf for VSCode"
+  echo "..  but actually it seems to source ~/.bash_profile for you so maybe better to just export these vars there (and conda activate devenv)"
+  echo "setenv RUSTUP_HOME ${RUSTUP_HOME}"
+  echo "setenv CARGO_HOME ${CARGO_HOME}"
+  echo "setenv CARGO_CONFIG ${CARGO_CONFIG}"
 fi
 . /opt/conda/bin/activate devenv
 # So since I like cross-compilation and keeping binaries around:
