@@ -1,0 +1,3 @@
+[submodule "projects/libarhive3-sys"]
+	path = projects/libarhive3-sys
+	url = ../libarchive3-sys

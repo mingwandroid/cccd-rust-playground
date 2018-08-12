@@ -1,0 +1,15 @@
+[package]
+name = "conda_core_rs"
+version = "0.0.1"
+authors = ["Ray Donnelly <mingw.android@gmail.com>"]
+
+[dependencies]
+libc = "0.2.39"
+libarchive3-sys = { path = "../libarchive3-sys" }
+os_type = "*"
+
+# [dependencies]
+# libarchive3-sys = "0.1.2"
+
+# [dependencies]
+# libarchive3-sys = { version = "*" }
