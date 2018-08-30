@@ -1,5 +1,5 @@
-[submodule "projects/libarhive3-sys"]
-	path = projects/libarhive3-sys
+[submodule "projects/libarchive3-sys"]
+	path = projects/libarchive3-sys
 	url = ../libarchive3-sys
 [submodule "projects/rust-brotli"]
 	path = projects/rust-brotli
