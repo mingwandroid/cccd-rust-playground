@@ -8,3 +8,6 @@
 	path = projects/alacritty
 	url = https://github.com/jwilm/alacritty
 	branch = scrollback
+[submodule "projects/ripgrep"]
+	path = projects/ripgrep
+	url = https://github.com/BurntSushi/ripgrep.git
