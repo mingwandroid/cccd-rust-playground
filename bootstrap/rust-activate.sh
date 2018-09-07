@@ -41,33 +41,35 @@ TARGET=$(basename ${CC%-*})
 echo CARGO_CONFIG = ${CARGO_CONFIG}
 rm ${CARGO_CONFIG}
 echo "[target.${TARGET}]" > ${CARGO_CONFIG}
-echo "linker = \"/opt/conda/envs/devenv/bin/${TARGET}-cc\"" >> ${CARGO_CONFIG}
+echo "linker = \"${CONDA_PREFIX}/bin/${TARGET}-cc\"" >> ${CARGO_CONFIG}
 echo "[target.x86_64-apple-darwin]" >> ${CARGO_CONFIG}
-echo "linker = \"/opt/conda/envs/devenv/bin/x86_64-apple-darwin13.4.0-clang\"" >> ${CARGO_CONFIG}
+echo "linker = \"${CONDA_PREFIX}/bin/x86_64-apple-darwin13.4.0-clang\"" >> ${CARGO_CONFIG}
 echo "[target.i686-unknown-linux-gnu]" >> ${CARGO_CONFIG}
-echo "linker = \"/opt/conda-32/envs/devenv/bin/i686-conda_cos6-linux-gnu-cc\"" >> ${CARGO_CONFIG}
+echo "linker = \"${CONDA_PREFIX}/bin/i686-conda_cos6-linux-gnu-cc\"" >> ${CARGO_CONFIG}
 echo "[target.x86_64-unknown-linux-gnu]" >> ${CARGO_CONFIG}
-echo "linker = \"/opt/conda/envs/devenv/bin/x86_64-conda_cos6-linux-gnu-cc\"" >> ${CARGO_CONFIG}
+echo "linker = \"${CONDA_PREFIX}/bin/x86_64-conda_cos6-linux-gnu-cc\"" >> ${CARGO_CONFIG}
 echo "[target.'cfg(...)']" >> ${CARGO_CONFIG}
 echo "rustflags = [\"-C\", \"link-flags=-Wl,-rpath-link=${CONDA_PREFIX}/lib,-rpath=${CONDA_PREFIX}/lib\", \"-C\", \"opt-level=z\"]" >> ${CARGO_CONFIG}
 
 
 echo "[target.x86_64-apple-darwin13.4.0]" > ${CARGO_CONFIG}
-echo "linker = \"/opt/conda/envs/devenv/bin/x86_64-apple-darwin13.4.0-cc\"" >> ${CARGO_CONFIG}
-echo "rustflags = [\"-C\", \"link-arg=-Wl,-rpath,/opt/conda/envs/devenv/lib\", \"-C\", \"opt-level=z\"]" >> ${CARGO_CONFIG}
+echo "linker = \"${CONDA_PREFIX}/bin/x86_64-apple-darwin13.4.0-cc\"" >> ${CARGO_CONFIG}
+echo "rustflags = [\"-C\", \"link-arg=-Wl,-rpath,${CONDA_PREFIX}/lib\", \"-C\", \"opt-level=z\"]" >> ${CARGO_CONFIG}
 echo "[target.x86_64-apple-darwin]" >> ${CARGO_CONFIG}
-echo "linker = \"/opt/conda/envs/devenv/bin/x86_64-apple-darwin13.4.0-clang\"" >> ${CARGO_CONFIG}
-echo "rustflags = [\"-C\", \"link-arg=-Wl,-rpath,/opt/conda/envs/devenv/lib\", \"-C\", \"opt-level=z\"]" >> ${CARGO_CONFIG}
+echo "linker = \"${CONDA_PREFIX}/bin/x86_64-apple-darwin13.4.0-clang\"" >> ${CARGO_CONFIG}
+echo "rustflags = [\"-C\", \"link-arg=-Wl,-rpath,${CONDA_PREFIX}/lib\", \"-C\", \"opt-level=z\"]" >> ${CARGO_CONFIG}
 echo "[target.i686-unknown-linux-gnu]" >> ${CARGO_CONFIG}
-echo "linker = \"/opt/conda-32/envs/devenv/bin/i686-conda_cos6-linux-gnu-cc\"" >> ${CARGO_CONFIG}
-echo "rustflags = [\"-C\", \"link-arg=-Wl,-rpath-link,/opt/conda/envs/devenv/lib\", \"-C\", \"link-arg=-Wl,-rpath,/opt/conda/envs/devenv/lib\", \"-C\", \"opt-level=s\"]" >> ${CARGO_CONFIG}
+echo "linker = \"${CONDA_PREFIX}/bin/i686-conda_cos6-linux-gnu-cc\"" >> ${CARGO_CONFIG}
+# -static-libgcc not seem to work, not sure we should care (from an AD packaging perspective, just make it depend on libgcc-ng and be happy).
+# echo "rustflags = [\"-C\", \"link-arg=-Wl,-rpath-link,${CONDA_PREFIX}/lib\", \"-C\", \"link-arg=-Wl,-rpath,${CONDA_PREFIX}/lib\", \"-C\", \"opt-level=s\", \"-C\", \"link-arg=-static-libgcc\"]" >> ${CARGO_CONFIG}
+echo "rustflags = [\"-C\", \"link-arg=-Wl,-rpath-link,${CONDA_PREFIX}/lib\", \"-C\", \"link-arg=-Wl,-rpath,${CONDA_PREFIX}/lib\", \"-C\", \"opt-level=s\"]" >> ${CARGO_CONFIG}
 echo "[target.x86_64-unknown-linux-gnu]" >> ${CARGO_CONFIG}
-echo "linker = \"/opt/conda/envs/devenv/bin/x86_64-conda_cos6-linux-gnu-cc\"" >> ${CARGO_CONFIG}
-echo "rustflags = [\"-C\", \"link-arg=-Wl,-rpath-link,/opt/conda/envs/devenv/lib\", \"-C\", \"link-arg=-Wl,-rpath,/opt/conda/envs/devenv/lib\", \"-C\", \"opt-level=s\"]" >> ${CARGO_CONFIG}
+echo "linker = \"${CONDA_PREFIX}/bin/x86_64-conda_cos6-linux-gnu-cc\"" >> ${CARGO_CONFIG}
+echo "rustflags = [\"-C\", \"link-arg=-Wl,-rpath-link,${CONDA_PREFIX}/lib\", \"-C\", \"link-arg=-Wl,-rpath,${CONDA_PREFIX}/lib\", \"-C\", \"opt-level=s\"]" >> ${CARGO_CONFIG}
 echo "# Not sure about this stuff:" >> ${CARGO_CONFIG}
 echo "# [target.'cfg(...)']" >> ${CARGO_CONFIG}
 echo "# [build]" >> ${CARGO_CONFIG}
-echo "# rustflags = [\"-C\", \"link-arg=-Wl,-rpath,/opt/conda/envs/devenv/lib\", \"-C\", \"opt-level=z\"]" >> ${CARGO_CONFIG}
+echo "# rustflags = [\"-C\", \"link-arg=-Wl,-rpath,${CONDA_PREFIX}/lib\", \"-C\", \"opt-level=z\"]" >> ${CARGO_CONFIG}
 
 
 export PATH=${CARGO_HOME}/bin:${PATH}
