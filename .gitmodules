@@ -4,3 +4,7 @@
 [submodule "projects/rust-brotli"]
 	path = projects/rust-brotli
 	url = ../rust-brotli
+[submodule "projects/alacritty"]
+	path = projects/alacritty
+	url = https://github.com/jwilm/alacritty
+	branch = scrollback
