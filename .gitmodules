@@ -11,3 +11,7 @@
 [submodule "projects/ripgrep"]
 	path = projects/ripgrep
 	url = https://github.com/BurntSushi/ripgrep.git
+[submodule "projects/conda"]
+	path = projects/conda
+	url = ../conda
+	branch = master-rust
